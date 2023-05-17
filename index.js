@@ -2,9 +2,10 @@ import express from "express"
 import dotenv from "dotenv"
 import mongoose from "mongoose"
 import authRoute from "./api/routes/auth.js"
-// import usersRoute from "./api/routes/users.js"
-// import hotelsRoute from "./api/routes/hotels.js"
-// import roomsRoute from "./api/routes/rooms.js"
+import morgan from "morgan"
+import usersRoute from "./api/routes/users.js"
+import hotelsRoute from "./api/routes/hotels.js"
+import roomsRoute from "./api/routes/rooms.js"
 const app = express()
 dotenv.config()
 //const mongoose = require('mongoose')
@@ -38,10 +39,13 @@ app.get("/", (req, res) => {
 
 
 //Middleware
+app.use(express.json())
+app.use(morgan('dev'))
+
 app.use("/api/auth", authRoute)
-app.use("/api/users", authRoute) //Users
-app.use("/api/hotels", authRoute) //Hotels
-app.use("/api/rooms", authRoute) //Rooms
+app.use("/api/users", usersRoute) //Users
+app.use("/api/hotels", hotelsRoute) //Hotels
+app.use("/api/rooms", roomsRoute) //Rooms
 
 app.listen(8000, () => {
     connect()

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from "mongoose"
 const Schema = mongoose.Schema
 
 const HotelSchema = new Schema ({
@@ -25,6 +25,10 @@ const HotelSchema = new Schema ({
     photos: {
         type: [String]
     },
+    title: {
+        type: String,
+        required: true
+    },
     description: {
         type: String,
         required: true
@@ -47,4 +51,4 @@ const HotelSchema = new Schema ({
     }
 })
 
-export default module.exports = mongoose.model("Hotel", HotelSchema)
+export default mongoose.model("Hotel", HotelSchema)

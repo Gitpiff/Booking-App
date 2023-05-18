@@ -1,8 +1,9 @@
 import express from "express"
 import dotenv from "dotenv"
 import mongoose from "mongoose"
-import authRoute from "./api/routes/auth.js"
 import morgan from "morgan"
+import cookieParser from "cookie-parser"
+import authRoute from "./api/routes/auth.js"
 import usersRoute from "./api/routes/users.js"
 import hotelsRoute from "./api/routes/hotels.js"
 import roomsRoute from "./api/routes/rooms.js"
@@ -39,6 +40,7 @@ app.get("/", (req, res) => {
 
 
 //Middleware
+app.use(cookieParser())
 app.use(express.json())
 app.use(morgan('dev'))
 
